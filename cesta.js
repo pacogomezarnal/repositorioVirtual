@@ -93,6 +93,24 @@ document.addEventListener('DOMContentLoaded', () => {
         let total = document.getElementById('total2');
         total.textContent=precio;
     });   
+
+    
+    botonFiltrar.addEventListener('click', (event) => {
+        //Vaciamos
+        let tabla = document.getElementsByTagName('table')[0];
+        let cuerpo = document.getElementsByTagName('tbody')[0];
+        cuerpo.remove();
+        let cuerpoNuevo = document.createElement('tbody');
+        tabla.appendChild(cuerpoNuevo);
+        //Filtramos
+        filtro=document.getElementById("textoFiltrar").value;
+        cesta.cesta["detalles"].forEach(producto => {
+            let concepto= producto.concepto;
+            if(concepto.includes(filtro)){
+                agregarFila(producto)
+            }
+        });
+    }); 
  
 
 });
