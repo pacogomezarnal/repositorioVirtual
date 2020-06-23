@@ -43,14 +43,37 @@ document.addEventListener('DOMContentLoaded', () => {
         total.textContent=precio;
     }
 
+    var cesta;
 
     botonCheck.addEventListener('click', (event) => {
-        var cesta = JSON.parse(data);
+        cesta = JSON.parse(data);
         cesta.cesta["detalles"].forEach(producto => {agregarFila(producto)});
         mostrarCesta(cesta);
         console.log(cesta);
 
     });
+
+    //Ordenar Productos
+    let ordenarProductos = function (productos) {
+        //Copiado de la documentacion de sort de mozilla a ver si sale asi
+        var items = productos;
+          items.sort(function (a, b) {
+            if (a.precio > b.precio) {
+              return 1;
+            }
+            if (a.precio < b.precio) {
+              return -1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+        //Sale al reves bufff
+        console.log(items);
+        agregarFila(items[2]);
+        agregarFila(items[1]);
+        agregarFila(items[0]);
+        
+    }
 
     botonOrdenar.addEventListener('click', (event) => {
         //Vaciamos
@@ -59,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cuerpo.remove();
         let cuerpoNuevo = document.createElement('tbody');
         tabla.appendChild(cuerpoNuevo);
+        ordenarProductos(cesta.cesta["detalles"]);
     });   
 
  
