@@ -114,11 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     botonPagar.addEventListener('click', (event) => {
         console.log("Llego");
-        /*
+        
         $.post( "https://payment-gateway.com/test", function( data ) {
             alert( "Data Loaded: " + data );
         });
-        */
     }); 
  
 
