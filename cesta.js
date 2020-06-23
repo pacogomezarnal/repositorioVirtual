@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    
+
     let agregarFila = function (producto) {
         console.log(producto);
         let cuerpo = document.getElementsByTagName('tbody')[0];
@@ -25,12 +27,31 @@ document.addEventListener('DOMContentLoaded', () => {
         nuevaFila.appendChild(celdaNombre);
     }
 
+    //Mostrar datos cesta
+    let mostrarCesta = function (cesta) {
+        let codigo = document.getElementById('codigo');
+        codigo.textContent=cesta.cesta["codigo"];
+        let fecha = document.getElementById('fecha');
+        fecha.textContent=cesta.cesta["fecha"];
+        let precio=0;
+
+        //Calculamos el total
+        cesta.cesta["detalles"].forEach(producto => {
+            precio=precio+producto["precio"];
+        });
+        let total = document.getElementById('total');
+        total.textContent=precio;
+    }
+
+
     botonCheck.addEventListener('click', (event) => {
         var cesta = JSON.parse(data);
         cesta.cesta["detalles"].forEach(producto => {agregarFila(producto)});
+        mostrarCesta(cesta);
         console.log(cesta);
 
     });
 
+ 
 
 });
