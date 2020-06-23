@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Ordenar Productos
     let ordenarProductos = function (productos) {
-        //Copiado de la documentacion de sort de mozilla a ver si sale asi
         var items = productos;
           items.sort(function (a, b) {
             if (a.precio > b.precio) {
@@ -67,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // a must be equal to b
             return 0;
           });
-        //Sale al reves bufff
         console.log(items);
         agregarFila(items[2]);
         agregarFila(items[1]);
@@ -85,6 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
         ordenarProductos(cesta.cesta["detalles"]);
     });   
 
+    botonTotal.addEventListener('click', (event) => {
+        let precio=0;
+
+        //Calculamos el total
+        cesta.cesta["detalles"].forEach(producto => {
+            precio=precio+producto["precio"];
+        });
+        let total = document.getElementById('total2');
+        total.textContent=precio;
+    });   
  
 
 });
